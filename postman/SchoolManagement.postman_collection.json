@@ -1,0 +1,120 @@
+{
+  "info": {
+    "name": "School Management",
+    "description": "API for managing schools and calculating proximity",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Schools",
+      "item": [
+        {
+          "name": "Add School (Success)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Delhi Public School\",\n  \"address\": \"Sector 14, Rohini, Delhi\",\n  \"latitude\": 28.7041,\n  \"longitude\": 77.1025\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/addSchool",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "addSchool"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add School (Validation Error)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"address\": \"Some Address\",\n  \"latitude\": \"not-a-number\",\n  \"longitude\": 77.1025\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/addSchool",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "addSchool"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Schools (Success)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listSchools?latitude=28.6139&longitude=77.2090",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listSchools"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "28.6139"
+                },
+                {
+                  "key": "longitude",
+                  "value": "77.2090"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Schools (Missing Params)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/listSchools",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "listSchools"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000"
+    }
+  ]
+}
